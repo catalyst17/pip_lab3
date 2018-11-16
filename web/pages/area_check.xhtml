@@ -2,12 +2,31 @@
 <!DOCTYPE html
         PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xml:lang="en" lang="en">
 <head>
-    <title>Main page</title>
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
+    <title>Основная страница</title>
 </head>
-<body>
-    <h:link value="Start page" outcome="index"/>
-</body>
+<h:body>
+    <!--<h:form>
+        <h:outputLabel for="Y" value="Введите значение Y:" />
+        <h:inputText id="Y" value="#{areaCheck.y}" required="true" converterMessage="Введено неверное значение">
+            <f:validateDoubleRange minimum="-3" maximum="5"/>
+        </h:inputText>
+        <h:commandButton value="Проверить">
+        </h:commandButton>
+    </h:form>-->
+
+    <h:form>
+            <h:panelGrid id="grid" columns="2" cellpadding="5">
+                <h:outputLabel for="Y" value="Введите значение Y:" style="font-weight:bold"/>
+                <h:inputText id="Y" value="#{areaCheck.y}" required="true" requiredMessage="Поле Y обязательно"/>
+
+                <h:commandButton value="Проверить"/>
+            </h:panelGrid>
+    </h:form>
+
+    <h:link value="Стартовая страница" outcome="index"/>
+</h:body>
 </html>
