@@ -30,5 +30,7 @@ public class AreaCheck {
         this.r = r;
     }
 
-
+    public String getsayY() {
+        return "Y is: " + y;
+    }
 }
