@@ -1,25 +1,28 @@
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
-import javax.faces.component.html.HtmlCommandLink;
 import javax.faces.component.html.HtmlInputHidden;
 import javax.faces.component.html.HtmlInputText;
 import java.io.Serializable;
 
 @ManagedBean
+@SessionScoped
 public class AreaCheck implements Serializable {
     private static final long serialVersionUID = 1L;
     private int x;
     private double y;
-    private double r = 2.1;
-    private HtmlCommandLink xField;
+    private double r;
     private HtmlInputText yField;
     private HtmlInputHidden rField;
-    private boolean inRange=false;
+    private boolean inRange;
+
+    @ManagedProperty(value = "#{pointData}")
+    private PointData pointData;
 
     public void check() {
-        if (x<2)
-            inRange=true;
+        y=(double)yField.getLocalValue();
+        r=Double.parseDouble((String)rField.getLocalValue());
+        pointData.getPoints().add(new PointData(x, y, r));
     }
 
     public boolean getInRange() {
@@ -62,10 +65,6 @@ public class AreaCheck implements Serializable {
         return rField;
     }
 
-    public HtmlCommandLink getxField() {
-        return xField;
-    }
-
     public void setyField(HtmlInputText yField) {
         this.yField = yField;
     }
@@ -74,11 +73,16 @@ public class AreaCheck implements Serializable {
         this.rField = rField;
     }
 
-    public void setxField(HtmlCommandLink xField) {
-        this.xField = xField;
+    public String getSayR() {
+        return "R is: " + r;
     }
 
-    public String getSayX() {
-        return "X is: " + x;
+    public void setPointData(PointData pointData) {
+        this.pointData = pointData;
+    }
+
+    public PointData getPointData() {
+
+        return pointData;
     }
 }

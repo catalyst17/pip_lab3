@@ -56,12 +56,29 @@
             <h:outputText id="displayRange" value="#{areaCheck.r}"/>
             <h:inputHidden id="textR" binding="#{areaCheck.rField}" />
 
-            <h:commandButton value="Проверить" action="#{areaCheck.check}">
-                <f:ajax execute="@form" render="@form"/>
+            <h:commandButton value="Проверить">
+                <f:ajax execute="@form" listener="#{areaCheck.check}" render="@form"/>
             </h:commandButton>
         </h:panelGrid>
 
-        <h:outputText id="output" value="#{areaCheck.inRange}"/>
+        <h:dataTable id="pointTable" value="#{pointData.points}" var="point" border="2"
+                     cellspacing="1" cellpadding="1">
+            <h:column>
+                <f:facet name="header">X</f:facet>
+                #{point.x}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Y</f:facet>
+                #{point.y}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">R</f:facet>
+                #{point.r}
+            </h:column>
+
+        </h:dataTable>
     </h:form>
 
     <h:link value="Стартовая страница" outcome="index"/>
