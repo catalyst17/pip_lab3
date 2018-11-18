@@ -45,6 +45,13 @@ public class AreaCheck extends Drawing implements Serializable {
         chart = new Chart(4, pointData);
     }
 
+    /*public void updateChart(ValueChangeEvent event) {
+        if (rField.getLocalValue() != null) {
+            chart = new Chart(Double.parseDouble((String)this.rField.getLocalValue()));
+        }
+        chart = new Chart((Double)event.getNewValue());
+    }*/
+
     public boolean getInRange() {
         return inRange;
     }
@@ -91,10 +98,10 @@ public class AreaCheck extends Drawing implements Serializable {
 
     public void setrField(HtmlInputHidden rField) {
         this.rField = rField;
-    }
-
-    public String getSayR() {
-        return "R is: " + r;
+        /*if (rField.getLocalValue() != null) {
+            chart = new Chart(Double.parseDouble((String)this.rField.getLocalValue()));
+            FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("form");
+        }*/
     }
 
     public void setPointData(PointData pointData) {

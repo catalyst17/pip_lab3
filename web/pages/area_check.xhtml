@@ -13,7 +13,7 @@
 </h:head>
 <h:body>
     <h:link value="Стартовая страница" outcome="index"/>
-    <h:form>
+    <h:form id="parentForm">
         <h:panelGrid columns="2" cellpadding="5" style="width: 100%" columnClasses="sixty, fourty">
             <h:panelGrid id="form" columns="3" cellpadding="5" style="width: 100%; text-align: center">
                 <h:outputLabel for="X" value="Выберите значение X:" style="font-weight:bold"/>
@@ -67,13 +67,14 @@
                 </h:commandButton>
             </h:panelGrid>
 
-            <b:canvas class="canvas" width="600" height="600" drawing="#{areaCheck.chart}"/>
-            <h:inputHidden id="xPic" binding="#{areaCheck.xPic}"/>
-            <h:inputHidden id="yPic" binding="#{areaCheck.yPic}"/>
-            <!--<h:commandButton id="hdnBtn">
-                <f:ajax listener="#{areaCheck.checkFromPic}" render="@form"/>
-            </h:commandButton>-->
-            <p:remoteCommand name="myCommand" action="#{areaCheck.checkFromPic}" style="display: none"/>
+            <h:form id="hdnForm">
+                <b:canvas id="canvas" class="canvas" width="600" height="600" drawing="#{areaCheck.chart}"/>
+                <h:inputHidden id="xPic" binding="#{areaCheck.xPic}"/>
+                <h:inputHidden id="yPic" binding="#{areaCheck.yPic}"/>
+                <h:commandButton id="hdnBtn" style="display: none">
+                    <f:ajax listener="#{areaCheck.checkFromPic}" render="parentForm"/>
+                </h:commandButton>
+            </h:form>
         </h:panelGrid>
 
         <h:dataTable id="pointTable" value="#{pointData.points}" var="point" border="2"
