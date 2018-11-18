@@ -4,15 +4,26 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://java.sun.com/jsf/core" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ace="http://www.icefaces.org/icefaces/components"
       xml:lang="en" lang="en">
-<head>
+<h:head>
     <title>Основная страница</title>
-</head>
+</h:head>
 <h:body>
     <h:form>
             <h:panelGrid id="form" columns="3" cellpadding="5">
+                <h:outputLabel for="X" value="Выберите значение X:" style="font-weight:bold"/>
+                <h:panelGrid id="X" columns="9" cellpadding="5">
+                    <h:commandLink value="-3" action="#{areaCheck.check}"/>
+                    <h:commandLink value="-2" binding="#{areaCheck.xField}"/>
+                    <h:commandLink value="-1" binding="#{areaCheck.xField}"/>
+                </h:panelGrid>
+                <h:message for="X" showSummary="true" showDetail="false" id="errorX"/>
+
                 <h:outputLabel for="Y" value="Введите значение Y:" style="font-weight:bold"/>
-                <h:inputText id="Y" pt:placeholder="(-3; 5)" value="#{areaCheck.y}" required="true" requiredMessage="Обязательно к вводу" validatorMessage="Указанное значение выходит за заданные пределы" converterMessage="Введены недопустимые символы">
+                <h:inputText id="Y" pt:placeholder="(-3; 5)" binding="#{areaCheck.yField}" required="true" requiredMessage="Обязательно к вводу"
+                             validatorMessage="Указанное значение выходит за заданные пределы"
+                             converter="javax.faces.Double" converterMessage="Введены недопустимые символы">
                     <f:validateDoubleRange minimum="-3" maximum="5"/>
                 </h:inputText>
                 <h:message for="Y" showSummary="true" showDetail="false" id="errorY"/>
@@ -22,12 +33,13 @@
                     <p:inputText id="textR" value="#{areaCheck.r}" />
                     <p:slider for="textR" minValue="2.1" maxValue="4.9" step="0.1" />
                 </h:panelGrid>
+                <h:message for="R" showSummary="true" showDetail="false" id="errorR"/>
 
-                <h:commandButton value="Проверить">
-                    <f:ajax execute="Y" render="output"/>
+                <h:commandButton value="Проверить" >
+                    <f:ajax render="output"/>
                 </h:commandButton>
 
-                <h:outputText id="output" value="#{areaCheck.sayY}"/>
+                <h:outputText id="output" value="#{areaCheck.sayR}"/>
             </h:panelGrid>
     </h:form>
 
