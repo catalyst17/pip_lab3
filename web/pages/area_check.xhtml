@@ -28,18 +28,14 @@
                 </h:inputText>
                 <h:message for="Y" showSummary="true" showDetail="false" id="errorY"/>
 
-                <h:outputLabel for="R" value="Введите значение R:" style="font-weight:bold"/>
-                <h:panelGrid id="R" columns="1" cellpadding="5" style="margin-bottom: 10px">
-                    <p:inputText id="textR" value="#{areaCheck.r}" />
-                    <p:slider for="textR" minValue="2.1" maxValue="4.9" step="0.1" />
-                </h:panelGrid>
-                <h:message for="R" showSummary="true" showDetail="false" id="errorR"/>
+                <h:outputLabel  value="Введите значение R:" style="font-weight:bold"/>
+                <p:slider for="textR" minValue="2.0" maxValue="5.0" step="0.1" display="displayRange"/>
+                <h:outputText id="displayRange" value="#{areaCheck.r}"/>
+                <h:inputHidden id="textR" binding="#{areaCheck.rField}" />
 
-                <h:commandButton value="Проверить" >
+                <h:commandButton value="Проверить" action="#{areaCheck.check}">
                     <f:ajax render="output"/>
                 </h:commandButton>
-
-                <h:outputText id="output" value="#{areaCheck.sayR}"/>
             </h:panelGrid>
     </h:form>
 

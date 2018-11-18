@@ -12,4 +12,17 @@
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>*.xhtml</url-pattern>
     </servlet-mapping>
+
+    <!--<context-param>
+        <param-name>org.icefaces.ace.theme</param-name>
+        <param-value>cupertino</param-value>
+    </context-param>
+    <context-param>
+        <param-name>icefaces.THEME</param-name>
+        <param-value>cupertino</param-value>
+    </context-param>
+    <context-param>
+        <param-name>org.icefaces.mandatoryResourceConfiguration</param-name>
+        <param-value>sliderEntry</param-value>
+    </context-param>-->
 </web-app>
