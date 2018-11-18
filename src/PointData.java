@@ -11,7 +11,7 @@ public class PointData implements Serializable {
     private double y;
     private double r;
     private boolean inRange;
-    private static final ArrayList<PointData> points = new ArrayList<>();
+    private static final ArrayList<PointData> points = new ArrayList<PointData>();
 
     public ArrayList<PointData> getPoints() {
         return points;
