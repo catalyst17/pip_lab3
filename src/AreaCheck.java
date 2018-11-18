@@ -8,6 +8,7 @@ import javax.faces.component.html.HtmlInputText;
 import java.io.Serializable;
 
 import static java.lang.Math.pow;
+import static org.primefaces.component.inplace.Inplace.PropertyKeys.event;
 
 @ManagedBean
 @SessionScoped
@@ -15,14 +16,16 @@ public class AreaCheck extends Drawing implements Serializable {
     private static final long serialVersionUID = 1L;
     private int x;
     private double y;
-    private double r = 2.0;
+    private double r = 3.5;
     private HtmlInputText yField;
     private HtmlInputHidden rField;
+    private HtmlInputHidden xPic;
+    private HtmlInputHidden yPic;
     private boolean inRange;
     @ManagedProperty(value = "#{pointData}")
     private PointData pointData;
     @ManagedProperty(value = "#{chart}")
-    private Chart chart;
+    private Chart chart = new Chart();
 
     public AreaCheck(){
     }
@@ -34,7 +37,12 @@ public class AreaCheck extends Drawing implements Serializable {
                 || (y<=-x+r && x>=0 && y>=0)
                 || (pow(x, 2)+pow(y, 2)<=pow(r, 2) && x<=0 && y<=0));
         pointData.getPoints().add(new PointData(x, y, r, inRange));
-        chart = new Chart(r);
+        chart = new Chart(r, pointData);
+    }
+
+    public void checkFromPic(){
+        pointData.getPoints().add(new PointData(0, 0, 4, true));
+        chart = new Chart(4, pointData);
     }
 
     public boolean getInRange() {
@@ -103,7 +111,22 @@ public class AreaCheck extends Drawing implements Serializable {
     }
 
     public Chart getChart() {
-
         return chart;
+    }
+
+    public HtmlInputHidden getxPic() {
+        return xPic;
+    }
+
+    public void setxPic(HtmlInputHidden xPic) {
+        this.xPic = xPic;
+    }
+
+    public HtmlInputHidden getyPic() {
+        return yPic;
+    }
+
+    public void setyPic(HtmlInputHidden yPic) {
+        this.yPic = yPic;
     }
 }
