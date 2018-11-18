@@ -14,9 +14,15 @@
             <h:panelGrid id="form" columns="3" cellpadding="5">
                 <h:outputLabel for="X" value="Выберите значение X:" style="font-weight:bold"/>
                 <h:panelGrid id="X" columns="9" cellpadding="5">
-                    <h:commandLink value="-3" action="#{areaCheck.check}"/>
-                    <h:commandLink value="-2" binding="#{areaCheck.xField}"/>
-                    <h:commandLink value="-1" binding="#{areaCheck.xField}"/>
+                    <h:commandLink value="-3" action="#{areaCheck.setX(-3)}"/>
+                    <h:commandLink value="-2" action="#{areaCheck.setX(-2)}"/>
+                    <h:commandLink value="-1" action="#{areaCheck.setX(-1)}"/>
+                    <h:commandLink value="0" action="#{areaCheck.setX(0)}"/>
+                    <h:commandLink value="1" action="#{areaCheck.setX(1)}"/>
+                    <h:commandLink value="2" action="#{areaCheck.setX(2)}"/>
+                    <h:commandLink value="3" action="#{areaCheck.setX(3)}"/>
+                    <h:commandLink value="4" action="#{areaCheck.setX(4)}"/>
+                    <h:commandLink value="5" action="#{areaCheck.setX(5)}"/>
                 </h:panelGrid>
                 <h:message for="X" showSummary="true" showDetail="false" id="errorX"/>
 
@@ -37,6 +43,7 @@
                     <f:ajax render="output"/>
                 </h:commandButton>
             </h:panelGrid>
+        <h:outputText id="output" value="#{areaCheck.sayX}"/>
     </h:form>
 
     <h:link value="Стартовая страница" outcome="index"/>

@@ -6,12 +6,11 @@ import javax.faces.component.html.HtmlInputText;
 import java.io.Serializable;
 
 @ManagedBean
-@SessionScoped
 public class AreaCheck implements Serializable {
     private static final long serialVersionUID = 1L;
     private int x;
     private double y;
-    private double r;
+    private double r = 2.1;
     private HtmlCommandLink xField;
     private HtmlInputText yField;
     private HtmlInputHidden rField;
@@ -64,5 +63,9 @@ public class AreaCheck implements Serializable {
 
     public void setxField(HtmlCommandLink xField) {
         this.xField = xField;
+    }
+
+    public String getsayX() {
+        return "X is: " + x;
     }
 }
