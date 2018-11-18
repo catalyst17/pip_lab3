@@ -1,6 +1,7 @@
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.component.UIComponent;
 import javax.faces.component.html.HtmlInputHidden;
 import javax.faces.component.html.HtmlInputText;
 import java.io.Serializable;
@@ -11,7 +12,7 @@ public class AreaCheck implements Serializable {
     private static final long serialVersionUID = 1L;
     private int x;
     private double y;
-    private double r;
+    private double r = 2.0;
     private HtmlInputText yField;
     private HtmlInputHidden rField;
     private boolean inRange;
