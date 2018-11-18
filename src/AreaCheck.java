@@ -1,5 +1,6 @@
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.component.html.HtmlCommandLink;
 import javax.faces.component.html.HtmlInputHidden;
 import javax.faces.component.html.HtmlInputText;
@@ -14,8 +15,20 @@ public class AreaCheck implements Serializable {
     private HtmlCommandLink xField;
     private HtmlInputText yField;
     private HtmlInputHidden rField;
+    private boolean inRange=false;
 
-    public void check() {}
+    public void check() {
+        if (x<2)
+            inRange=true;
+    }
+
+    public boolean getInRange() {
+        return inRange;
+    }
+
+    public void setInRange(boolean inRange) {
+        this.inRange = inRange;
+    }
 
     public int getX() {
         return x;
@@ -65,7 +78,7 @@ public class AreaCheck implements Serializable {
         this.xField = xField;
     }
 
-    public String getsayX() {
+    public String getSayX() {
         return "X is: " + x;
     }
 }

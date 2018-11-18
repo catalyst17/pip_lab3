@@ -11,39 +11,57 @@
 </h:head>
 <h:body>
     <h:form>
-            <h:panelGrid id="form" columns="3" cellpadding="5">
-                <h:outputLabel for="X" value="Выберите значение X:" style="font-weight:bold"/>
-                <h:panelGrid id="X" columns="9" cellpadding="5">
-                    <h:commandLink value="-3" action="#{areaCheck.setX(-3)}"/>
-                    <h:commandLink value="-2" action="#{areaCheck.setX(-2)}"/>
-                    <h:commandLink value="-1" action="#{areaCheck.setX(-1)}"/>
-                    <h:commandLink value="0" action="#{areaCheck.setX(0)}"/>
-                    <h:commandLink value="1" action="#{areaCheck.setX(1)}"/>
-                    <h:commandLink value="2" action="#{areaCheck.setX(2)}"/>
-                    <h:commandLink value="3" action="#{areaCheck.setX(3)}"/>
-                    <h:commandLink value="4" action="#{areaCheck.setX(4)}"/>
-                    <h:commandLink value="5" action="#{areaCheck.setX(5)}"/>
-                </h:panelGrid>
-                <h:message for="X" showSummary="true" showDetail="false" id="errorX"/>
-
-                <h:outputLabel for="Y" value="Введите значение Y:" style="font-weight:bold"/>
-                <h:inputText id="Y" pt:placeholder="(-3; 5)" binding="#{areaCheck.yField}" required="true" requiredMessage="Обязательно к вводу"
-                             validatorMessage="Указанное значение выходит за заданные пределы"
-                             converter="javax.faces.Double" converterMessage="Введены недопустимые символы">
-                    <f:validateDoubleRange minimum="-3" maximum="5"/>
-                </h:inputText>
-                <h:message for="Y" showSummary="true" showDetail="false" id="errorY"/>
-
-                <h:outputLabel  value="Введите значение R:" style="font-weight:bold"/>
-                <p:slider for="textR" minValue="2.0" maxValue="5.0" step="0.1" display="displayRange"/>
-                <h:outputText id="displayRange" value="#{areaCheck.r}"/>
-                <h:inputHidden id="textR" binding="#{areaCheck.rField}" />
-
-                <h:commandButton value="Проверить" action="#{areaCheck.check}">
-                    <f:ajax render="output"/>
-                </h:commandButton>
+        <h:panelGrid id="form" columns="3" cellpadding="5">
+            <h:outputLabel for="X" value="Выберите значение X:" style="font-weight:bold"/>
+            <h:panelGrid id="X" columns="9" cellpadding="5">
+                <h:commandLink value="-3">
+                    <f:ajax immediate="#{areaCheck.setX(-3)}"/>
+                </h:commandLink>
+                <h:commandLink value="-2">
+                    <f:ajax immediate="#{areaCheck.setX(-2)}"/>
+                </h:commandLink>
+                <h:commandLink value="-1">
+                    <f:ajax immediate="#{areaCheck.setX(-1)}"/>
+                </h:commandLink>
+                <h:commandLink value="0">
+                    <f:ajax immediate="#{areaCheck.setX(0)}"/>
+                </h:commandLink>
+                <h:commandLink value="1">
+                    <f:ajax immediate="#{areaCheck.setX(1)}"/>
+                </h:commandLink>
+                <h:commandLink value="2">
+                    <f:ajax immediate="#{areaCheck.setX(2)}"/>
+                </h:commandLink>
+                <h:commandLink value="3">
+                    <f:ajax immediate="#{areaCheck.setX(3)}"/>
+                </h:commandLink>
+                <h:commandLink value="4">
+                    <f:ajax immediate="#{areaCheck.setX(4)}"/>
+                </h:commandLink>
+                <h:commandLink value="5">
+                    <f:ajax immediate="#{areaCheck.setX(5)}"/>
+                </h:commandLink>
             </h:panelGrid>
-        <h:outputText id="output" value="#{areaCheck.sayX}"/>
+            <h:message for="X" showSummary="true" showDetail="false" id="errorX"/>
+            <h:outputLabel for="Y" value="Введите значение Y:" style="font-weight:bold"/>
+            <h:inputText id="Y" pt:placeholder="(-3; 5)" binding="#{areaCheck.yField}" required="true" requiredMessage="Обязательно к вводу"
+                         validatorMessage="Указанное значение выходит за заданные пределы"
+                         converter="javax.faces.Double" converterMessage="Введены недопустимые символы">
+                <f:validateDoubleRange minimum="-3" maximum="5"/>
+            </h:inputText>
+            <h:message for="Y" showSummary="true" showDetail="false" id="errorY"/>
+
+            <h:outputLabel  value="Введите значение R:" style="font-weight:bold"/>
+            <p:slider for="textR" minValue="2.0" maxValue="5.0" step="0.1" display="displayRange"/>
+            <h:outputText id="displayRange" value="#{areaCheck.r}"/>
+            <h:inputHidden id="textR" binding="#{areaCheck.rField}" />
+
+            <h:commandButton value="Проверить" action="#{areaCheck.check}">
+                <f:ajax execute="@form" render="@form"/>
+            </h:commandButton>
+        </h:panelGrid>
+
+        <h:outputText id="output" value="#{areaCheck.inRange}"/>
     </h:form>
 
     <h:link value="Стартовая страница" outcome="index"/>
