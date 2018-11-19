@@ -67,14 +67,26 @@
                 </h:commandButton>
             </h:panelGrid>
 
-            <h:form id="hdnForm">
-                <b:canvas id="canvas" class="canvas" width="600" height="600" drawing="#{areaCheck.chart}"/>
-                <h:inputHidden id="xPic" binding="#{areaCheck.xPic}"/>
-                <h:inputHidden id="yPic" binding="#{areaCheck.yPic}"/>
-                <h:commandButton id="hdnBtn" style="display: none">
-                    <f:ajax listener="#{areaCheck.checkFromPic}" render="parentForm"/>
-                </h:commandButton>
-            </h:form>
+            <h:panelGrid columns="1">
+                <h:form id="hdnForm">
+                    <h:outputLabel for="rPic" value="Введите значение R для графика:" style="font-weight:bold"/>
+                    <h:inputText id="rPic" pt:placeholder="(2; 5)" binding="#{areaCheck.rPic}" required="true" requiredMessage="Обязательно к вводу"
+                                 validatorMessage="Указанное значение выходит за заданные пределы"
+                                 converter="javax.faces.Double" converterMessage="Введены недопустимые символы">
+                        <f:validateDoubleRange minimum="2" maximum="5"/>
+                    </h:inputText>
+                    <h:message for="rPic" showSummary="true" showDetail="false" id="errorRPic"/>
+
+                    <b:canvas id="canvas" class="canvas" width="600" height="600" drawing="#{areaCheck.chart}"/>
+
+                    <h:inputHidden id="xPic" binding="#{areaCheck.xPic}"/>
+                    <h:inputHidden id="yPic" binding="#{areaCheck.yPic}"/>
+                    <h:commandButton id="hdnBtn" style="display: none">
+                        <f:ajax execute="hdnForm" listener="#{areaCheck.checkFromPic}" render="parentForm"/>
+                    </h:commandButton>
+                </h:form>
+            </h:panelGrid>
+
         </h:panelGrid>
 
         <h:dataTable id="pointTable" value="#{pointData.points}" var="point" border="2"
