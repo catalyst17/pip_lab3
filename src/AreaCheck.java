@@ -47,6 +47,8 @@ public class AreaCheck extends Drawing implements Serializable {
         double xInp = Double.parseDouble((String)xPic.getLocalValue());
         double yInp = Double.parseDouble((String)yPic.getLocalValue());
         double rInp = (Double) rPic.getLocalValue();
+        xInp = (xInp-300)/200*4;
+        yInp = (300-yInp)/200*4;
         //тут перевести пиксели в числа
         boolean inRange=((xInp<=rInp && xInp>=0 && yInp<=0 && yInp>=-rInp/2)
                 || (yInp<=-xInp+rInp && xInp>=0 && yInp>=0)
