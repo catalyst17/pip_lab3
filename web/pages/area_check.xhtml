@@ -67,15 +67,19 @@
                 </h:commandButton>
             </h:panelGrid>
 
-            <h:panelGrid columns="1">
+            <h:panelGrid columns="1" style="text-align: center">
                 <h:form id="hdnForm">
-                    <h:outputLabel for="rPic" value="Введите значение R для графика:" style="font-weight:bold"/>
-                    <h:inputText id="rPic" pt:placeholder="(2; 5)" binding="#{areaCheck.rPic}" required="true" requiredMessage="Обязательно к вводу"
-                                 validatorMessage="Указанное значение выходит за заданные пределы"
-                                 converter="javax.faces.Double" converterMessage="Введены недопустимые символы">
-                        <f:validateDoubleRange minimum="2" maximum="5"/>
-                    </h:inputText>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel for="rPic" value="Введите значение R для графика:" style="font-weight:bold"/>
+                        <h:inputText id="rPic" pt:placeholder="(2; 5)" binding="#{areaCheck.rPic}" required="true" requiredMessage="Обязательно к вводу"
+                                     validatorMessage="Указанное значение выходит за заданные пределы"
+                                     converter="javax.faces.Double" converterMessage="Введены недопустимые символы">
+                            <f:validateDoubleRange minimum="2" maximum="5"/>
+                        </h:inputText>
+                    </h:panelGrid>
                     <h:message for="rPic" showSummary="true" showDetail="false" id="errorRPic"/>
+
+                    <br/>
 
                     <b:canvas id="canvas" class="canvas" width="600" height="600" drawing="#{areaCheck.chart}"/>
 
